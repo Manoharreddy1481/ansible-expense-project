@@ -6,9 +6,10 @@
     mysql_host_address: "mysql.manohar.fun"
   tasks:
   - name: installing PyMySQL
-    ansible.builtin.package:
-      name: PyMySQL
-      state: installed
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      executable: pip3.9
   - name: installing mysql
     ansible.builtin.package:
       name: mysql-server
