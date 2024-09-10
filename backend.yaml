@@ -1,6 +1,9 @@
 - name: installing backend server
   hosts: backend
   become: yes
+  vars:
+    mysql_root_password: "ExpenseApp@1"
+    mysql_host_address: "mysql.manohar.fun"
   tasks:
   - name: disable default nodejs
     ansible.builtin.command: dnf module disable nodejs -y
@@ -34,4 +37,13 @@
     ansible.builtin.copy:
       src: backend.service
       dest: /etc/systemd/system/backend.service
+
+  - name: import mysql data
+    community.mysql.mysql_db:
+      login_user: root
+      login_password: "{{ mysql_root_password }}"
+      login_host: "{{ mysql_host_address }}"
+      target: /app/schema/backend.sql
+      name: all
+      state: import
      
