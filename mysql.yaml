@@ -24,5 +24,10 @@
       login_user: root
       login_password: "{{ mysql_root_password }}"
       login_host: "{{ mysql_host_address }}"
+    ignore_errors: true
+    register: mysql_info
+  - name: print mysql info 
+    anisble.builtin.debug:
+      msg: "{{mysql_info}}"
   
 
