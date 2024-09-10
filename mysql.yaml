@@ -5,6 +5,10 @@
     mysql_root_password: "ExpenseApp@1"
     mysql_host_address: "mysql.manohar.fun"
   tasks:
+  - name: installing PyMySQL
+    ansible.builtin.package:
+      name: PyMySQL
+      state: installed
   - name: installing mysql
     ansible.builtin.package:
       name: mysql-server
